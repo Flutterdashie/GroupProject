@@ -31,6 +31,11 @@ namespace GroupProject.Controllers
             return View(model);
         }
 
+        public ActionResult About()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult Login(User model)
         {
