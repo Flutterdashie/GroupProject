@@ -17,7 +17,8 @@ namespace GroupProject.Controllers
 
         public ActionResult Login()
         {
-            return View();
+            User model = new User();
+            return View(model);
         }
 
         public ActionResult Login(User model)
