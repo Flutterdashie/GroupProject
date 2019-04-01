@@ -19,6 +19,10 @@ namespace GroupProject.Models
         {
         }
 
+        public static AuthModel Create()
+        {
+            return new AuthModel();
+        }
         
     }
 }
