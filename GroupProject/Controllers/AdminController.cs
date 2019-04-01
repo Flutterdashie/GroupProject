@@ -21,7 +21,7 @@ namespace GroupProject.Controllers
         {
             var repo = new BlogRepository();
             repo.Insert(blogPost);
-            return View("Index");
+            return RedirectToAction("Index","Home");
         }
     }
 }
