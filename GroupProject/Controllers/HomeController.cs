@@ -21,6 +21,11 @@ namespace GroupProject.Controllers
             return View(model);
         }
 
+        public ActionResult About()
+        {
+            return View();
+        }
+
         public ActionResult Login(User model)
         {
             throw new NotImplementedException();
