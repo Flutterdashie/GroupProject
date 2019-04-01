@@ -23,6 +23,6 @@ namespace GroupProject.Models
         {
             return new AuthModel();
         }
-        
+        public virtual DbSet<BlogPost> Posts { get; set; }
     }
 }

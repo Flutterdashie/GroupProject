@@ -11,5 +11,6 @@ namespace GroupProject.Models
         public string Title { get; set; }
         public string Message { get; set; }
         public DateTime DateAdded { get; set; }
+        public DateTime LastEdited { get; set; }
     }
 }

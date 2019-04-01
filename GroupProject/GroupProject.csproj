@@ -195,6 +195,10 @@
     <Compile Include="Migrations\201904011831061_init.Designer.cs">
       <DependentUpon>201904011831061_init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904012104037_now-blogs-too.cs" />
+    <Compile Include="Migrations\201904012104037_now-blogs-too.Designer.cs">
+      <DependentUpon>201904012104037_now-blogs-too.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AuthModel.cs" />
     <Compile Include="Models\BlogPost.cs" />
@@ -233,6 +237,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201904011831061_init.resx">
       <DependentUpon>201904011831061_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904012104037_now-blogs-too.resx">
+      <DependentUpon>201904012104037_now-blogs-too.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
