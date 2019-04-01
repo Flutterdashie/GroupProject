@@ -37,7 +37,7 @@ namespace GroupProject.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(User model)
+        public ActionResult Login(User model,string returnUrl)
         {
             //TODO: Add further validation/specific model errors
             if (!ModelState.IsValid)
@@ -58,6 +58,8 @@ namespace GroupProject.Controllers
 
             var identity = userMgr.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
             authMgr.SignIn(new AuthenticationProperties{ IsPersistent = true}, identity);
+            if (!string.IsNullOrEmpty(returnUrl))
+                return Redirect(returnUrl);
             return RedirectToAction("Index");
         }
 
