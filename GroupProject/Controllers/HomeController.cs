@@ -18,5 +18,10 @@ namespace GroupProject.Controllers
         {
             return View();
         }
+
+        public ActionResult About()
+        {
+            return View();
+        }
     }
 }
