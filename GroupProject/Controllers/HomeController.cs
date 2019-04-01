@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using GroupProject.Models;
 
 namespace GroupProject.Controllers
 {
@@ -22,6 +23,11 @@ namespace GroupProject.Controllers
         public ActionResult About()
         {
             return View();
+        }
+
+        public ActionResult Login(User model)
+        {
+            throw new NotImplementedException();
         }
     }
 }
