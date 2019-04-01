@@ -14,7 +14,7 @@ namespace GroupProject.Controllers
             return View();
         }
 
-        public ActionResult Archives()
+        public ActionResult Login()
         {
             return View();
         }
