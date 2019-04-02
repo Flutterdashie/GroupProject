@@ -24,6 +24,8 @@ namespace GroupProject.Repos
 
                 cmd.Parameters.AddWithValue("@Title", BlogPost.Title);
                 cmd.Parameters.AddWithValue("@Message", BlogPost.Message);
+                cmd.Parameters.AddWithValue("@DateAdded", BlogPost.DateAdded);
+                cmd.Parameters.AddWithValue("@DateEdited", BlogPost.DateEdited);
 
                 cn.Open();
 
@@ -51,7 +53,8 @@ namespace GroupProject.Repos
                             BlogPostId = (int) dr["PostID"],
                             DateAdded = DateTime.Parse(dr["DateAdded"].ToString()),
                             Message = dr["Message"].ToString(),
-                            Title = dr["Title"].ToString()
+                            Title = dr["Title"].ToString(),
+                            DateEdited = DateTime.Parse(dr["DateEdited"].ToString())
                         };
                     }
                 }
