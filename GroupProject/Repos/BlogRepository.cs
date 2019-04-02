@@ -32,5 +32,30 @@ namespace GroupProject.Repos
                 //customer.CustomerId = (int)param.Value;
             }
         }
+
+        public IEnumerable<BlogPost> GetAllPosts()
+        {
+            using (var cn = new SqlConnection(Settings.GetConnectionString()))
+            {
+                SqlCommand cmd = new SqlCommand("GetAllPosts", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cn.Open();
+
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+
+                    while (dr.Read())
+                    {
+                        yield return new BlogPost
+                        {
+                            BlogPostId = (int) dr["PostID"],
+                            DateAdded = DateTime.Parse(dr["DateAdded"].ToString()),
+                            Message = dr["Message"].ToString(),
+                            Title = dr["Title"].ToString()
+                        };
+                    }
+                }
+            }
+        }
     }
 }
