@@ -57,5 +57,48 @@ namespace GroupProject.Repos
                 }
             }
         }
+
+        public void BlogDeletePost(int BlogPostId)
+        {
+            using (var cn = new SqlConnection(Settings.GetConnectionString()))
+            {
+                SqlCommand cmd = new SqlCommand("BlogPostDelete", cn);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cn.Open();
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public BlogPost BlogPostSelectById(int BlogPostId)
+        {
+            BlogPost post = null;
+
+            using (var cn = new SqlConnection(Settings.GetConnectionString()))
+            {
+                SqlCommand cmd = new SqlCommand("BlogPostSelectById", cn);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@BlogPostId", BlogPostId);
+
+                cn.Open();
+
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+
+                    if (dr.Read())
+                    {
+                        post.DateAdded = (DateTime)dr["DataAdded"];
+                        post.Title = dr["BlogPostTitle"].ToString();
+                        post.Message = dr["BlogPostMessage"].ToString();
+                        post.DateEdited = (DateTime)dr["DateEdited"];
+                    }
+                }
+                return post;
+            }
+        }
     }
 }
