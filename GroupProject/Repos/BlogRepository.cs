@@ -17,10 +17,6 @@ namespace GroupProject.Repos
                 SqlCommand cmd = new SqlCommand("BlogPostInsert", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                //SqlParameter param = new SqlParameter("@CustomerId", SqlDbType.Int);
-                //param.Direction = ParameterDirection.Output;
-
-                //cmd.Parameters.Add(param);
 
                 cmd.Parameters.AddWithValue("@Title", BlogPost.Title);
                 cmd.Parameters.AddWithValue("@Message", BlogPost.Message);
@@ -30,8 +26,6 @@ namespace GroupProject.Repos
                 cn.Open();
 
                 cmd.ExecuteNonQuery();
-
-                //customer.CustomerId = (int)param.Value;
             }
         }
 
@@ -77,7 +71,6 @@ namespace GroupProject.Repos
 
         public BlogPost BlogPostSelectById(int BlogPostId)
         {
-            BlogPost post = null;
 
             using (var cn = new SqlConnection(Settings.GetConnectionString()))
             {
@@ -94,13 +87,16 @@ namespace GroupProject.Repos
 
                     if (dr.Read())
                     {
-                        post.DateAdded = (DateTime)dr["DataAdded"];
-                        post.Title = dr["BlogPostTitle"].ToString();
-                        post.Message = dr["BlogPostMessage"].ToString();
-                        post.DateEdited = (DateTime)dr["DateEdited"];
+                        return new BlogPost
+                        {
+                            DateAdded = (DateTime) dr["DateAdded"],
+                            Title = dr["BlogPostTitle"].ToString(),
+                            Message = dr["BlogPostMessage"].ToString(),
+                            DateEdited = (DateTime) dr["DateEdited"]
+                        };
                     }
                 }
-                return post;
+                return null;
             }
         }
     }
