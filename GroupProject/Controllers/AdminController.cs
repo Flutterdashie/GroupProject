@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace GroupProject.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         // GET: Admin
@@ -23,5 +24,28 @@ namespace GroupProject.Controllers
             repo.Insert(blogPost);
             return RedirectToAction("Index","Home");
         }
+
+        [HttpGet]
+        [Route("/Admin/Update/{id}")]
+        public ActionResult Update(int id)
+        {
+            BlogPost model = new BlogPost(); // TODO: Replace this with repo.GetByID or equivalent
+            if (model == null)
+            {
+                //TODO: Some sort of error handling if the GetByID doesn't find a post there
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [Route("Admin/Update/{id}")]
+        public ActionResult Update(int id, BlogPost updatedPost)
+        {
+            //TODO: Validate title/message/whatever else
+            //TODO: Actually apply changes to the repo
+            throw new NotImplementedException();
+        }
+
     }
 }
