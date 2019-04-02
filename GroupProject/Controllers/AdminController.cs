@@ -47,5 +47,26 @@ namespace GroupProject.Controllers
             throw new NotImplementedException();
         }
 
+        [HttpGet]
+        public ActionResult DeletePost(int id)
+        {
+            var repo = new BlogRepository();
+
+            BlogPost post = repo.BlogPostSelectById(id);
+
+            return View(post);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeletePost(BlogPost post)
+        {
+            var repo = new BlogRepository();
+
+            repo.BlogDeletePost(post.BlogPostId);
+
+            return RedirectToAction("Index", "Home");
+        }
+
     }
 }
