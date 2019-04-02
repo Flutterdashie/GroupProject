@@ -24,6 +24,8 @@ namespace GroupProject.Repos
 
                 cmd.Parameters.AddWithValue("@Title", BlogPost.Title);
                 cmd.Parameters.AddWithValue("@Message", BlogPost.Message);
+                cmd.Parameters.AddWithValue("@DateAdded", BlogPost.DateAdded);
+                cmd.Parameters.AddWithValue("@DateEdited", BlogPost.DateEdited);
 
                 cn.Open();
 
@@ -51,10 +53,54 @@ namespace GroupProject.Repos
                             BlogPostId = (int) dr["PostID"],
                             DateAdded = DateTime.Parse(dr["DateAdded"].ToString()),
                             Message = dr["Message"].ToString(),
-                            Title = dr["Title"].ToString()
+                            Title = dr["Title"].ToString(),
+                            DateEdited = DateTime.Parse(dr["DateEdited"].ToString())
                         };
                     }
                 }
+            }
+        }
+
+        public void BlogDeletePost(int BlogPostId)
+        {
+            using (var cn = new SqlConnection(Settings.GetConnectionString()))
+            {
+                SqlCommand cmd = new SqlCommand("BlogPostDelete", cn);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cn.Open();
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public BlogPost BlogPostSelectById(int BlogPostId)
+        {
+            BlogPost post = null;
+
+            using (var cn = new SqlConnection(Settings.GetConnectionString()))
+            {
+                SqlCommand cmd = new SqlCommand("BlogPostSelectById", cn);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@BlogPostId", BlogPostId);
+
+                cn.Open();
+
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+
+                    if (dr.Read())
+                    {
+                        post.DateAdded = (DateTime)dr["DataAdded"];
+                        post.Title = dr["BlogPostTitle"].ToString();
+                        post.Message = dr["BlogPostMessage"].ToString();
+                        post.DateEdited = (DateTime)dr["DateEdited"];
+                    }
+                }
+                return post;
             }
         }
     }
