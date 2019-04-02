@@ -27,6 +27,12 @@
                         @Html.ActionLink("Log Out", "Logout", "Home")
                     }
                 </a>
+                <a class="nav-item nav-link">
+                    @if (User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink("New Post", "Create", "Admin")
+                    }
+                </a>
             </div>
         </nav>
     </div>

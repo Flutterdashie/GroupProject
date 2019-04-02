@@ -1,3 +1,4 @@
+using GroupProject.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -19,6 +20,17 @@ namespace GroupProject.Migrations
         {
             var userMgr = new UserManager<IdentityUser>(new UserStore<IdentityUser>(context));
             var roleMgr = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+
+
+            context.Posts.AddOrUpdate(new BlogPost
+            {
+                BlogPostId = 0,
+                DateAdded = DateTime.Now,
+                LastEdited = DateTime.Now,
+                Message = "Hi! Welcome to my blog. This is the first post, I hope you enjoy your time here!",
+                Title = "Welcome!"
+            });
+            context.SaveChanges();
 
             if (!roleMgr.RoleExists("Admin"))
             {

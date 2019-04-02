@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<GroupProject.Models.BlogPost>
+
 @{
     ViewBag.Title = "Index";
 }
@@ -7,11 +8,26 @@
 <h2>Testing</h2>
 
 <div class="container">
+    @foreach (var post in Model)
+    {
+        <div class="row border">
+            <h3>@post.Title</h3>
+            <p>
+                @post.Message<br /><sub>
+                    Posted on: @post.DateAdded.ToShortDateString()
+                    @if (!post.DateAdded.Equals(post.LastEdited))
+                    {
+                        <span>, Last edited: @post.LastEdited.ToShortDateString()</span>
+                    }
+                </sub>
+            </p>
 
+        </div>
+    }
 </div>
 @*add blog posts
-    
-    
-    
-    
-    *@
+
+
+
+
+*@

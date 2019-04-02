@@ -13,6 +13,7 @@ using Microsoft.Owin.Host.SystemWeb;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.AspNet.Identity.Owin;
 using GroupProject.Models;
+using GroupProject.Repos;
 using Microsoft.Owin.Security;
 
 namespace GroupProject.Controllers
@@ -22,7 +23,8 @@ namespace GroupProject.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return View();
+            BlogRepository repo = new BlogRepository();
+            return View(repo.GetAllPosts());
         }
 
         public ActionResult Login()
