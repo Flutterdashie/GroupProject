@@ -11,3 +11,14 @@ textarea {
     max-width: 280px;
 }
 
+.posts {
+    border-style: solid;
+    border-width: medium;
+    border-radius: 3px;
+}
+
+.ending {
+    background-color:lightslategrey;
+    color: #323232;
+    font-size: 10px;
+}
