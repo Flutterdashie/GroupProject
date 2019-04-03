@@ -91,5 +91,9 @@ namespace GroupProject.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public ActionResult Index()
+        {
+            return View();
+        }
     }
 }

@@ -1,0 +1,26 @@
+﻿@model IEnumerable<GroupProject.Models.BlogPost>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="container posts">
+    @foreach (var post in Model)
+    {
+        <div class="row">
+            <div class="col-md-1">
+                <p>@post.BlogPostId</p>
+            </div>
+            <div class="col-md-2">
+                <h3>@post.Title</h3>
+            </div>
+            <div class="col-md-3">
+                <p>@Html.ActionLink("update", "Update", "Admin", new { id = post.BlogPostId }, new { @class = "btn btn-primary" })</p>
+
+                <p>@Html.ActionLink("delete", "DeletePost", "Admin", new { id = post.BlogPostId }, new { @class = "btn btn-danger" })
+                </p>
+            </div>
+        </div>
+    }
+</div>

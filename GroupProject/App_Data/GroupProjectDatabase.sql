@@ -9,13 +9,13 @@ end
 IF EXISTS(
    SELECT *
    FROM sys.server_principals
-   WHERE [Name] = 'Admin')
+   WHERE [Name] = 'BlogApp')
 BEGIN
-   DROP LOGIN CarApp
+   DROP LOGIN BlogApp
 END
 GO
 
-CREATE LOGIN [Admin] WITH PASSWORD='testing123'
+CREATE LOGIN BlogApp WITH PASSWORD='testing123'
 
 
 create database GroupProject
@@ -25,7 +25,7 @@ go
 
 DROP USER IF EXISTS [Admin]
 GO
-CREATE USER [Admin] FOR LOGIN [Admin]
+CREATE USER [Admin] FOR LOGIN BlogApp
 GO
 ALTER ROLE db_backupoperator ADD MEMBER [Admin]
 ALTER ROLE db_ddladmin ADD MEMBER [Admin]

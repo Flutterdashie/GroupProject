@@ -9,28 +9,29 @@
 
 <br />
 
-@foreach (var x in Request.ServerVariables)
-{
+
 <div class="container posts">
-    @*@foreach (var post in Model);
-    <div class="row">
-        <div class="col-md-2">
-            <h3>@post.Title</h3>
+    @foreach (var post in Model)
+    {
+        <div class="row">
+            <div class="col-md-2">
+                <h3>@post.Title</h3>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <p>@post.Message</p>
-    </div>
-    <div class="row ending" >
-        <div class="col-md-4">
-            <p>@post.DateAdded</p>
+        <div class="row">
+            <p>@post.Message</p>
         </div>
-        <div class="col-md-4">
-            <p>@post.DateEdited</p>
+        <div class="row ending">
+            <div class="col-md-4">
+                <p>@post.DateAdded</p>
+            </div>
+            <div class="col-md-4">
+                <p>@post.DateEdited</p>
+            </div>
+            <div class="col-md-4">
+                <p>@@theOwner</p>
+            </div>
         </div>
-        <div class="col-md-4">
-            <p>@@theOwner</p>
-        </div>
-    </div>*@
+    }
 </div>
 }

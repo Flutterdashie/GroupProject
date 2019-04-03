@@ -46,7 +46,6 @@ create procedure BlogPostUpdate (
 @BlogPostId int,
 @BlogPostTitle varchar(40),
 @BlogPostMessage nvarchar(max),
-@DateAdded datetime,
 @DateEdited datetime
 )
 as
@@ -55,7 +54,6 @@ begin
 	UPDATE BlogPost set
 	BlogPostTitle = @BlogPostTitle, 
 	BlogPostMessage = @BlogPostMessage, 
-	DateAdded = @DateAdded, 
 	DateEdited = @DateEdited 
 	where BlogPostId = @BlogPostId
 end
@@ -83,7 +81,7 @@ go
 
 if exists(select * from INFORMATION_SCHEMA.ROUTINES
 	where ROUTINE_NAME = 'BlogPostSelectById')
-		drop procedure CarSelect
+		drop procedure BlogPostSelectById
 go
 
 create procedure BlogPostSelectById (

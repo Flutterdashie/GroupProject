@@ -15,6 +15,7 @@ textarea {
     border-style: solid;
     border-width: medium;
     border-radius: 3px;
+    border-color: darkslategrey;
 }
 
 .ending {
