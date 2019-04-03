@@ -23,3 +23,7 @@ textarea {
     color: #323232;
     font-size: 10px;
 }
+
+.jumbo {
+    background-image: radial-gradient(#FFFACD, #D8BFD8);
+}
