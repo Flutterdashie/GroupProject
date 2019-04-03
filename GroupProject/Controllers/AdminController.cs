@@ -22,14 +22,17 @@ namespace GroupProject.Controllers
         {
             var repo = new BlogRepository();
             repo.Insert(blogPost);
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
         [Route("/Admin/Update/{id}")]
         public ActionResult Update(int id)
         {
-            BlogPost model = new BlogPost(); // TODO: Replace this with repo.GetByID or equivalent
+            var repo = new BlogRepository();
+
+            BlogPost model = repo.BlogPostSelectById(id);
+
             if (model == null)
             {
                 //TODO: Some sort of error handling if the GetByID doesn't find a post there
@@ -42,9 +45,29 @@ namespace GroupProject.Controllers
         [Route("Admin/Update/{id}")]
         public ActionResult Update(int id, BlogPost updatedPost)
         {
-            //TODO: Validate title/message/whatever else
-            //TODO: Actually apply changes to the repo
-            throw new NotImplementedException();
+
+            var repo = new BlogRepository();
+
+            if (string.IsNullOrEmpty(updatedPost.Title))
+            {
+                ModelState.AddModelError("Post Title", "Please enter a title for the post.");
+            }
+
+            if (string.IsNullOrEmpty(updatedPost.Message))
+            {
+                ModelState.AddModelError("Post Message", "Please enter a message for the post.");
+            }
+
+            if (ModelState.IsValid)
+            {
+                //repo.UpdatePost(updatedPost)
+                return RedirectToAction("Index");
+            }
+
+            else
+            {
+                return View(updatedPost);
+            }
         }
 
         [HttpGet]

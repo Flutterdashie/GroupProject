@@ -89,15 +89,20 @@ namespace GroupProject.Repos
                     {
                         return new BlogPost
                         {
-                            DateAdded = (DateTime) dr["DateAdded"],
+                            DateAdded = (DateTime)dr["DateAdded"],
                             Title = dr["BlogPostTitle"].ToString(),
                             Message = dr["BlogPostMessage"].ToString(),
-                            DateEdited = (DateTime) dr["DateEdited"]
+                            DateEdited = (DateTime)dr["DateEdited"]
                         };
                     }
                 }
                 return null;
             }
+        }
+
+        public BlogPost BlogUpdatePost(int BlogPostId)
+        {
+            throw new NotImplementedException();
         }
     }
 }
