@@ -133,7 +133,7 @@ namespace GroupProject.Repos
             using (var cn = new SqlConnection(Settings.GetConnectionString()))
 
             {                   
-                SqlCommand cmd = new SqlCommand("GetPostByTitle", cn);
+                SqlCommand cmd = new SqlCommand("SearchByTitle", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@BlogPostTitle", term);
 
@@ -165,7 +165,7 @@ namespace GroupProject.Repos
             using (var cn = new SqlConnection(Settings.GetConnectionString()))
 
             {
-                SqlCommand cmd = new SqlCommand("GetPostById", cn);
+                SqlCommand cmd = new SqlCommand("SearchById", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@BlogPostId", Id);
 

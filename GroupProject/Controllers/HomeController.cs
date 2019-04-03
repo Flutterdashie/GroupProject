@@ -74,9 +74,9 @@ namespace GroupProject.Controllers
         }
 
         //add route
-        [Route()]
+        [Route("search/title/{term}")]
         [AcceptVerbs("GET")]
-        public ActionResult guestSearchByTitle(string term)
+        public ActionResult GuestSearchByTitle(string term)
         {
             var repo = new BlogRepository();
 
@@ -91,13 +91,13 @@ namespace GroupProject.Controllers
         }
 
         //add route
-        [Route()]
+        [Route("search/id/{id}")]
         [AcceptVerbs("GET")]
-        public ActionResult guestSearchById(int Id)
+        public ActionResult GuestSearchById(int id)
         {
             var repo = new BlogRepository();
 
-            IEnumerable<BlogPost> found = repo.SearchById(Id);
+            IEnumerable<BlogPost> found = repo.SearchById(id);
 
             if (found == null)
             {

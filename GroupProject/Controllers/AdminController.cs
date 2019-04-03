@@ -26,7 +26,7 @@ namespace GroupProject.Controllers
         }
 
         [HttpGet]
-        [Route("/Admin/Update/{id}")]
+        [Route("Admin/Update/{id}")]
         public ActionResult Update(int id)
         {
             var repo = new BlogRepository();
@@ -96,9 +96,8 @@ namespace GroupProject.Controllers
             return RedirectToAction("Index", "Admin");
         }
 
-        //add route
-        [Route()]
         [AcceptVerbs("GET")]
+        [Route("Admin/search/title/{term}")]
         public ActionResult SearchByTitle(string term)
         {
             var repo = new BlogRepository();
@@ -114,13 +113,13 @@ namespace GroupProject.Controllers
         }
         
         //add route
-        [Route()]
+        [Route("Admin/search/id/{id}")]
         [AcceptVerbs("GET")]
-        public ActionResult SearchById(int Id)
+        public ActionResult SearchById(int id)
         {
             var repo = new BlogRepository();
 
-            IEnumerable<BlogPost> found = repo.SearchById(Id);
+            IEnumerable<BlogPost> found = repo.SearchById(id);
 
             if (found == null)
             {
