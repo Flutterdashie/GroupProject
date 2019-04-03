@@ -100,9 +100,22 @@ namespace GroupProject.Repos
             }
         }
 
-        public BlogPost BlogUpdatePost(int BlogPostId)
+        public void BlogUpdatePost(BlogPost post)
         {
-            throw new NotImplementedException();
+            using (var cn = new SqlConnection(Settings.GetConnectionString()))
+            {
+                SqlCommand cmd = new SqlCommand("BlogPostUpdate", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@BlogPostId", post.BlogPostId);
+                cmd.Parameters.AddWithValue("@Title", post.Title);
+                cmd.Parameters.AddWithValue("@Message", post.Message);
+                cmd.Parameters.AddWithValue("@DateEdited", DateTime.Now);
+
+                cn.Open();
+
+                cmd.ExecuteNonQuery();
+            }
         }
     }
 }

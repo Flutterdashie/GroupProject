@@ -35,7 +35,7 @@ namespace GroupProject.Controllers
 
             if (model == null)
             {
-                //TODO: Some sort of error handling if the GetByID doesn't find a post there
+                return RedirectToAction("Index", "Home");
             }
 
             return View(model);
@@ -50,17 +50,17 @@ namespace GroupProject.Controllers
 
             if (string.IsNullOrEmpty(updatedPost.Title))
             {
-                ModelState.AddModelError("Post Title", "Please enter a title for the post.");
+                ModelState.AddModelError("Title", "Please enter a title for the post.");
             }
 
             if (string.IsNullOrEmpty(updatedPost.Message))
             {
-                ModelState.AddModelError("Post Message", "Please enter a message for the post.");
+                ModelState.AddModelError("Message", "Please enter a message for the post.");
             }
 
             if (ModelState.IsValid)
             {
-                //repo.UpdatePost(updatedPost)
+                repo.BlogUpdatePost(updatedPost);
                 return RedirectToAction("Index");
             }
 
@@ -75,9 +75,14 @@ namespace GroupProject.Controllers
         {
             var repo = new BlogRepository();
 
-            BlogPost post = repo.BlogPostSelectById(id);
+            BlogPost model = repo.BlogPostSelectById(id);
 
-            return View(post);
+            if (model == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View(model);
         }
 
         [HttpPost]
