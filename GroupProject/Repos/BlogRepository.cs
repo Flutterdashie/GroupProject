@@ -95,6 +95,7 @@ namespace GroupProject.Repos
                     {
                         return new BlogPost
                         {
+                            BlogPostId = (int)dr["BlogPostId"],
                             DateAdded = (DateTime)dr["DateAdded"],
                             Title = dr["BlogPostTitle"].ToString(),
                             Message = dr["BlogPostMessage"].ToString(),
