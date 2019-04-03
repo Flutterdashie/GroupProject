@@ -72,5 +72,39 @@ namespace GroupProject.Controllers
             authMgr.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index");
         }
+
+        //add route
+        [Route()]
+        [AcceptVerbs("GET")]
+        public ActionResult guestSearchByTitle(string term)
+        {
+            var repo = new BlogRepository();
+
+            IEnumerable<BlogPost> found = repo.SearchByTitle(term);
+
+            if (found == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View(found);
+        }
+
+        //add route
+        [Route()]
+        [AcceptVerbs("GET")]
+        public ActionResult guestSearchById(int Id)
+        {
+            var repo = new BlogRepository();
+
+            IEnumerable<BlogPost> found = repo.SearchById(Id);
+
+            if (found == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View(found);
+        }
     }
 }
