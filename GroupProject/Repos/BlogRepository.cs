@@ -67,6 +67,8 @@ namespace GroupProject.Repos
 
                 cmd.CommandType = CommandType.StoredProcedure;
 
+                cmd.Parameters.AddWithValue("@BlogPostId", BlogPostId);
+
                 cn.Open();
 
                 cmd.ExecuteNonQuery();
@@ -113,7 +115,7 @@ namespace GroupProject.Repos
 
                 cmd.Parameters.AddWithValue("@BlogPostId", post.BlogPostId);
                 cmd.Parameters.AddWithValue("@BlogPostTitle", post.Title);
-                cmd.Parameters.AddWithValue("@@BlogPostMessage", post.Message);
+                cmd.Parameters.AddWithValue("@BlogPostMessage", post.Message);
                 cmd.Parameters.AddWithValue("@DateEdited", DateTime.Now);
 
                 cn.Open();
