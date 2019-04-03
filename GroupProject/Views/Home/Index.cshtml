@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Index";
 }
-
+<br />
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -49,12 +49,15 @@
 @foreach (var post in Model)
 {
     <div class="container">
-        <div class="posts">
-            <div class="row">
-                <div class="h3 col-12">@post.Title</div>
-            </div>
-            <div class="row">
-                <div class="col-12">@post.Message</div>
+        <div class="posts1">
+            <div class="container">
+                <div class="row">
+                    <div class="h3 col-12">@post.Title</div>
+                </div>
+                <div class="row">
+                    <div class="col-12">@post.Message</div>
+                </div>
+                <p></p>
             </div>
             <div class="col-md-12">
                 <div class="row ending">

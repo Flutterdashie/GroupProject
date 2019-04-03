@@ -12,16 +12,16 @@ textarea {
 }
 
 html {
-    height: 100vh;
+    height: 110vh;
 }
 
 body {
-    /*background-image: linear-gradient(to bottom, #FFF, #F8F8FF);*/
+    background-image: linear-gradient(to bottom, #FFF, #E3FEF1);
 }
 
-.posts {
+.posts1 {
     border-style: solid;
-    border-width: medium;
+    border-width: thin;
     border-radius: 3px;
     border-color: darkslategrey;
     background-color: white;
@@ -30,7 +30,7 @@ body {
 .ending {
     background-color:lightgray;
     text-align:center;
-    color: #000;
+    color: darkslategray;
 }
 
 .button {
@@ -48,5 +48,5 @@ body {
 }
 
 .jumbo {
-    background-image: radial-gradient(#FFFACD, #D8BFD8);
+    background-image: radial-gradient(#F5FE75, #DA70D6);
 }
