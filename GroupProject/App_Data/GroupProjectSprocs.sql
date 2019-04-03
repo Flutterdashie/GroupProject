@@ -95,3 +95,33 @@ begin
 end
 go
 
+if exists(select * from INFORMATION_SCHEMA.ROUTINES
+	where ROUTINE_NAME = 'SearchByTitle')
+		drop procedure SearchByTitle
+go
+
+create procedure SearchByTitle(
+@BlogPostTitle  varchar(40)
+)as
+
+begin
+	select BlogPostId, BlogPostTitle, BlogPostMessage, DateAdded, DateEdited
+	from BlogPost
+	where BlogPostTitle = @BlogPostTitle
+end
+go
+
+if exists(select * from INFORMATION_SCHEMA.ROUTINES
+	where ROUTINE_NAME = 'SearchById')
+		drop procedure SearchById
+go
+
+create procedure SearchById(
+@BlogPostId int
+)as
+
+begin
+	select BlogPostId, BlogPostTitle, BlogPostMessage, DateAdded, DateEdited
+	from BlogPost
+	where BlogPostId = @BlogPostId
+end
