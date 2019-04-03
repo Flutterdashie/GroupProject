@@ -17,11 +17,15 @@ namespace GroupProject.Repos
                 SqlCommand cmd = new SqlCommand("BlogPostInsert", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
+                SqlParameter output = new SqlParameter("@BlogPostId", SqlDbType.Int);
+                output.Direction = ParameterDirection.Output;
+                cmd.Parameters.Add(output);
+                
 
-                cmd.Parameters.AddWithValue("@Title", BlogPost.Title);
-                cmd.Parameters.AddWithValue("@Message", BlogPost.Message);
-                cmd.Parameters.AddWithValue("@DateAdded", BlogPost.DateAdded);
-                cmd.Parameters.AddWithValue("@DateEdited", BlogPost.DateEdited);
+                cmd.Parameters.AddWithValue("@BlogPostTitle", BlogPost.Title);
+                cmd.Parameters.AddWithValue("@BlogPostMessage", BlogPost.Message);
+                cmd.Parameters.AddWithValue("@DateAdded", DateTime.Now);
+                cmd.Parameters.AddWithValue("@DateEdited",DateTime.Now);
 
                 cn.Open();
 
@@ -44,10 +48,10 @@ namespace GroupProject.Repos
                     {
                         yield return new BlogPost
                         {
-                            BlogPostId = (int) dr["PostID"],
+                            BlogPostId = (int) dr["BlogPostId"],
                             DateAdded = DateTime.Parse(dr["DateAdded"].ToString()),
-                            Message = dr["Message"].ToString(),
-                            Title = dr["Title"].ToString(),
+                            Message = dr["BlogPostMessage"].ToString(),
+                            Title = dr["BlogPostTitle"].ToString(),
                             DateEdited = DateTime.Parse(dr["DateEdited"].ToString())
                         };
                     }
@@ -62,6 +66,8 @@ namespace GroupProject.Repos
                 SqlCommand cmd = new SqlCommand("BlogPostDelete", cn);
 
                 cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@BlogPostId", BlogPostId);
 
                 cn.Open();
 
@@ -89,6 +95,7 @@ namespace GroupProject.Repos
                     {
                         return new BlogPost
                         {
+                            BlogPostId = (int)dr["BlogPostId"],
                             DateAdded = (DateTime)dr["DateAdded"],
                             Title = dr["BlogPostTitle"].ToString(),
                             Message = dr["BlogPostMessage"].ToString(),
@@ -108,8 +115,8 @@ namespace GroupProject.Repos
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@BlogPostId", post.BlogPostId);
-                cmd.Parameters.AddWithValue("@Title", post.Title);
-                cmd.Parameters.AddWithValue("@Message", post.Message);
+                cmd.Parameters.AddWithValue("@BlogPostTitle", post.Title);
+                cmd.Parameters.AddWithValue("@BlogPostMessage", post.Message);
                 cmd.Parameters.AddWithValue("@DateEdited", DateTime.Now);
 
                 cn.Open();
