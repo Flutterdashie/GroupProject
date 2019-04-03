@@ -19,9 +19,9 @@ textarea {
 }
 
 .ending {
-    background-color:lightslategrey;
-    color: #323232;
-    font-size: 10px;
+    background-color:lightgray;
+    text-align:center;
+    color: #000;
 }
 
 .jumbo {
