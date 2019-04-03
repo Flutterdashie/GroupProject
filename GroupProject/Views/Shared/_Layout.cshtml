@@ -13,21 +13,23 @@
 <body>
     <div>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <p>My Blog</p>
+            <span class="navbar-brand">My Blog</span>
             <div class="navbar-nav">
-                <a class="nav-item nav-link active">@Html.ActionLink("Home", "Index", "Home")<span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link">@Html.ActionLink("About Me", "About", "Home")</a>
-                <a class="nav-item nav-link">
+                @Html.ActionLink("Home", "Index", "Home",null,new { @class = "nav-item nav-link"})
+                @Html.ActionLink("About Me", "About", "Home", null, new { @class = "nav-item nav-link" })
                     @if (!User.Identity.IsAuthenticated)
                     {
-                        @Html.ActionLink("Log In", "Login", "Home")
+                        @Html.ActionLink("Log In", "Login", "Home", null, new { @class = "nav-item nav-link" })
                     }
                     else
                     {
-                        @Html.ActionLink("Log Out", "Logout", "Home")
-                        @Html.ActionLink("Create Post", "Create", "Admin")
+                        if (User.IsInRole("Admin"))
+                        {
+                            @Html.ActionLink("Admin Home","Index","Admin", null, new { @class = "nav-item nav-link" })
+                            @Html.ActionLink("Create Post", "Create", "Admin", null, new { @class = "nav-item nav-link" })
+                        }
+                        @Html.ActionLink("Log Out", "Logout", "Home", null, new { @class = "nav-item nav-link" })
                     }
-                </a>
             </div>
         </nav>
     </div>
