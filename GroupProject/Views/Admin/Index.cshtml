@@ -3,8 +3,38 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h1>Admin Home</h1>
 
+<div class="container">
+    <div class="posts">
+        <h3>Search Filters</h3>
+        <form class="form-horizontal" role="form" id="used-form">
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="new-model" class="col-md-3 control-label">
+                        Search Item:
+                    </label>
+                    <select id="searchList" class="square col-md-7">
+                        <option value="default" disabled selected hidden>Select Category</option>
+                        <option value="title">Title</option>
+                        <option value="blogpostid">Blog Post Id</option>
+                    </select>
+
+                </div>
+                <div class="form-group col-md-5">
+                    <label for="new-model" class="col-md-3" control-label">
+                        Search Term:
+                    </label>
+                    <input type="text" name="Search" id="SearchTextbox" value="Search Term" class="square col-md-7">
+                </div>
+                <div class="col-md-"3>
+                    <a href="#" class="button button-info">Search</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<br />
 <div class="container posts">
     @foreach (var post in Model)
     {
@@ -12,15 +42,15 @@
             <div class="col-md-1">
                 <p>@post.BlogPostId</p>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-4">
                 <h3>@post.Title</h3>
             </div>
-            <div class="col-md-3">
-                <p>@Html.ActionLink("update", "Update", "Admin", new { id = post.BlogPostId }, new { @class = "btn btn-primary" })</p>
-
-                <p>@Html.ActionLink("delete", "DeletePost", "Admin", new { id = post.BlogPostId }, new { @class = "btn btn-danger" })
-                </p>
-            </div>
+            <div class="col-md-2">
+                <p>@Html.ActionLink("update", "Update", "Admin", new { id = post.BlogPostId }, new { @class = "primary" })</p>
+                </div>
+            <div>
+                <p>@Html.ActionLink("delete", "DeletePost", "Admin", new { id = post.BlogPostId }, new { @class = "danger" })</p>
         </div>
-    }
+    </div>
+}
 </div>
