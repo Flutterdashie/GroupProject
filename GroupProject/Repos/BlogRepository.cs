@@ -125,5 +125,69 @@ namespace GroupProject.Repos
                 cmd.ExecuteNonQuery();
             }
         }
+
+        public IEnumerable<BlogPost> SearchByTitle(string term)
+        {
+            List<BlogPost> list = new List<BlogPost>();
+
+            using (var cn = new SqlConnection(Settings.GetConnectionString()))
+
+            {                   
+                SqlCommand cmd = new SqlCommand("GetPostByTitle", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@BlogPostTitle", term);
+
+                cn.Open();
+
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        BlogPost currentRow = new BlogPost();
+
+                        currentRow.Title = dr["BlogPostTitle"].ToString();
+                        currentRow.Message = dr["BlogPostMessage"].ToString();
+                        currentRow.DateAdded = (DateTime)dr["DateAdded"];
+                        currentRow.DateEdited = (DateTime)dr["DateEdited"];
+                        currentRow.BlogPostId = (int)dr["BlogPostId"];
+
+                        list.Add(currentRow);
+                    }
+                }
+                return list;
+            }
+        }
+
+        public IEnumerable<BlogPost> SearchById(int Id)
+        {
+            List<BlogPost> list = new List<BlogPost>();
+
+            using (var cn = new SqlConnection(Settings.GetConnectionString()))
+
+            {
+                SqlCommand cmd = new SqlCommand("GetPostById", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@BlogPostId", Id);
+
+                cn.Open();
+
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        BlogPost currentRow = new BlogPost();
+
+                        currentRow.Title = dr["BlogPostTitle"].ToString();
+                        currentRow.Message = dr["BlogPostMessage"].ToString();
+                        currentRow.DateAdded = (DateTime)dr["DateAdded"];
+                        currentRow.DateEdited = (DateTime)dr["DateEdited"];
+                        currentRow.BlogPostId = (int)dr["BlogPostId"];
+
+                        list.Add(currentRow);
+                    }
+                }
+                return list;
+            }
+        }
     }
 }

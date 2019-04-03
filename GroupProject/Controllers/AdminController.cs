@@ -22,7 +22,7 @@ namespace GroupProject.Controllers
         {
             var repo = new BlogRepository();
             repo.Insert(blogPost);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Admin");
         }
 
         [HttpGet]
@@ -35,7 +35,7 @@ namespace GroupProject.Controllers
 
             if (model == null)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Admin");
             }
 
             return View(model);
@@ -61,7 +61,7 @@ namespace GroupProject.Controllers
             if (ModelState.IsValid)
             {
                 repo.BlogUpdatePost(updatedPost);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Admin");
             }
 
             else
@@ -79,7 +79,7 @@ namespace GroupProject.Controllers
 
             if (model == null)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Admin");
             }
 
             return View(model);
@@ -93,7 +93,41 @@ namespace GroupProject.Controllers
 
             repo.BlogDeletePost(post.BlogPostId);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Admin");
+        }
+
+        //add route
+        [Route()]
+        [AcceptVerbs("GET")]
+        public ActionResult SearchByTitle(string term)
+        {
+            var repo = new BlogRepository();
+
+            IEnumerable<BlogPost> found = repo.SearchByTitle(term);
+
+            if (found == null)
+            {
+                return RedirectToAction("Index", "Admin");
+            }
+
+            return View(found);
+        }
+        
+        //add route
+        [Route()]
+        [AcceptVerbs("GET")]
+        public ActionResult SearchById(int Id)
+        {
+            var repo = new BlogRepository();
+
+            IEnumerable<BlogPost> found = repo.SearchById(Id);
+
+            if (found == null)
+            {
+                return RedirectToAction("Index", "Admin");
+            }
+
+            return View(found);
         }
 
         public ActionResult Index()
