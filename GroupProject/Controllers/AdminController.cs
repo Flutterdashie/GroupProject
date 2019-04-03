@@ -112,7 +112,6 @@ namespace GroupProject.Controllers
             return View(found);
         }
         
-        //add route
         [Route("Admin/search/id/{id}")]
         [AcceptVerbs("GET")]
         public ActionResult SearchById(int id)
