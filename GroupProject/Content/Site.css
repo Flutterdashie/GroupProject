@@ -11,11 +11,20 @@ textarea {
     max-width: 280px;
 }
 
+html {
+    height: 100vh;
+}
+
+body {
+    /*background-image: linear-gradient(to bottom, #FFF, #F8F8FF);*/
+}
+
 .posts {
     border-style: solid;
     border-width: medium;
     border-radius: 3px;
     border-color: darkslategrey;
+    background-color: white;
 }
 
 .ending {

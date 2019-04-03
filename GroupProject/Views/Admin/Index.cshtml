@@ -3,11 +3,11 @@
     ViewBag.Title = "Index";
 }
 
-<h1>Admin Home</h1>
-
+<h2>Admin Home</h2>
+<br />
 <div class="container">
-    <div class="posts">
-        <h3>Search Filters</h3>
+    <div>
+        <h4>Search Filters</h4>
         <form class="form-horizontal" role="form" id="used-form">
             <div class="row">
                 <div class="form-group col-md-4">
@@ -52,5 +52,7 @@
                 <p>@Html.ActionLink("delete", "DeletePost", "Admin", new { id = post.BlogPostId }, new { @class = "danger" })</p>
         </div>
     </div>
+    
 }
+
 </div>
