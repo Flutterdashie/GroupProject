@@ -14,7 +14,7 @@ namespace GroupProject.Controllers
         // GET: Admin
         public ActionResult Create()
         {
-            return View();
+            return View(new BlogPost());
         }
 
         [HttpPost]
@@ -22,7 +22,7 @@ namespace GroupProject.Controllers
         {
             var repo = new BlogRepository();
             repo.Insert(blogPost);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -35,7 +35,7 @@ namespace GroupProject.Controllers
 
             if (model == null)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index");
             }
 
             return View(model);
@@ -79,7 +79,7 @@ namespace GroupProject.Controllers
 
             if (model == null)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index");
             }
 
             return View(model);
@@ -93,12 +93,13 @@ namespace GroupProject.Controllers
 
             repo.BlogDeletePost(post.BlogPostId);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index");
         }
 
         public ActionResult Index()
         {
-            return View();
+            var repo = new BlogRepository();
+            return View(repo.GetAllPosts());
         }
     }
 }
