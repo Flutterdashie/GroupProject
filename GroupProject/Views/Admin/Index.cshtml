@@ -68,3 +68,37 @@
     }
 
 </div>
+
+@section scripts {
+<script>
+    $(document).ready(function () {
+
+        $('#adminSearchButton').click(function (event) {
+            var category = $("#searchList").val();
+            var term = $("#SearchTextbox").val();
+            $.ajax({
+                type: 'GET',
+                url: 'http://localhost:56967/Admin/Search/' + category + '/' + term,
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                success: function (data, status) {
+                    $.each(data, function (index, item) {
+                        var blogPostId = item.BlogPostId;
+                        var title = item.BlogPostTitle;
+                        var message = item.BlogPostMessage;
+                        var dateAdded = item.DateAdded;
+                        var dateEdited = item.DateEdited;
+                    })
+                },
+                error: function (message) {
+                    alert(message.responseText)
+
+                }
+
+            })
+        })
+    });
+    </script>
+}
