@@ -8,7 +8,7 @@
 <div class="container">
     <div>
         <h4>Search Filters</h4>
-        <form class="form-horizontal" role="form" id="used-form">
+        <form class="form-horizontal" role="form" id="searchForm">
             <div class="row">
                 <div class="form-group col-md-4">
                     <label for="searchList" class="col-md-3 col-form-label">
@@ -47,7 +47,7 @@
     </div>
 </div>
 
-<div class="container posts1">
+<div class="container posts1" id="nonSearch">
     <br />
         @foreach (var post in Model)
         {
@@ -68,6 +68,11 @@
         }
 </div>
 
+<div class="container posts1" id="posts2">
+    <br />
+</div>
+
+
 @section scripts {
-    <script type = "text/javascript" src = "Scripts/searchHandler.js"></script>
+    <script type = "text/javascript" src = "/Scripts/searchHandler.js"></script>
 }

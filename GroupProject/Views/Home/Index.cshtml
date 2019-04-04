@@ -47,7 +47,7 @@
 <div class="container">
     <div>
         <h4>Search Filters</h4>
-        <form class="form-horizontal" role="form" id="used-form">
+        <form class="form-horizontal" role="form" id="searchForm">
             <div class="row">
                 <div class="form-group col-md-4">
                     <label for="searchList" class="col-md-3 col-form-label">
@@ -74,38 +74,41 @@
 </div>
 <br />
 
-@foreach (var post in Model)
-{
-    <div class="container">
-        <div class="posts1">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <h3>@post.Title</h3></div>
+<div id="nonSearch">
+    @foreach (var post in Model)
+    {
+        <div class="container">
+            <div class="posts1">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h3>@post.Title</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">@Html.Raw(post.Message)</div>
+                    </div>
+                    <p></p>
                 </div>
-                <div class="row">
-                    <div class="col-12">@Html.Raw(post.Message)</div>
+                <div class="col-md-12">
+                    <div class="row ending">
+                        <div class="col-md-4">
+                            <p>@post.DateAdded</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>@post.DateEdited</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>@@theOwner</p>
+                        </div>
+                    </div>
                 </div>
-                <p></p>
             </div>
-            <div class="col-md-12">
-                <div class="row ending">
-                    <div class="col-md-4">
-                        <p>@post.DateAdded</p>
-                    </div>
-                    <div class="col-md-4">
-                        <p>@post.DateEdited</p>
-                    </div>
-                    <div class="col-md-4">
-                        <p>@@theOwner</p>
-                    </div>
-                </div>
-            </div>
-    </div>
-    <br />
-    </div>
-}
-
+            <br />
+        </div>
+    }
+</div>
+<div id="posts2"></div>
 @section scripts {
-<script type = "text/javascript" src = "Scripts/searchHandler.js";></script>
+<script type = "text/javascript" src = "/Scripts/searchHandler.js"></script>
 }
