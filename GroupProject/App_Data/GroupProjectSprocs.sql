@@ -125,3 +125,32 @@ begin
 	from BlogPost
 	where BlogPostId = @BlogPostId
 end
+go
+
+drop procedure if exists GetByMonth
+go
+create procedure GetByMonth(
+@Month int
+)
+as 
+begin
+	select BlogPostId, BlogPostTitle, BlogPostMessage, DateAdded, DateEdited
+	from BlogPost
+	where @Month = MONTH(DateAdded)
+end
+go
+
+drop procedure if exists GetPaginated
+go
+create procedure GetPaginated(
+@Page int
+)
+as 
+begin
+	select BlogPostId, BlogPostTitle, BlogPostMessage, DateAdded, DateEdited
+	from BlogPost
+	order by DateAdded
+	offset (@Page - 1) * 10 rows
+	fetch next 10 rows only;
+end
+go

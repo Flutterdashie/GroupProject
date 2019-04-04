@@ -44,7 +44,34 @@
 </div>
 <br />
 
+<div class="container">
+    <div>
+        <h4>Search Filters</h4>
+        <form class="form-horizontal" role="form" id="used-form">
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="searchList" class="col-md-3 col-form-label">
+                        Search Item:
+                    </label>
+                    <select id="searchList" class="square col-md-7">
+                        <option value="default" disabled selected hidden>Select Category</option>
+                        <option value="title">Title</option>
+                    </select>
 
+                </div>
+                <div class="form-group col-md-5">
+                    <label for="SearchTextbox" class="col-md-3 col-form-label">
+                        Search Term:
+                    </label>
+                    <input type="text" name="Search" id="SearchTextbox" class="square col-md-7" placeholder="Insert Term">
+                </div>
+                <div class="col-md-3">
+                    <a href="#" class="button btn-info" id="guestSearchButton">Search</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 
 @foreach (var post in Model)
 {
@@ -77,3 +104,6 @@
     </div>
 }
 
+@section scripts {
+<script type = "text/javascript" src = "Scripts/searchHandler.js";></script>
+}
