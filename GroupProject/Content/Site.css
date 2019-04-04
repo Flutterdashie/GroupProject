@@ -19,6 +19,10 @@ body {
     background-image: linear-gradient(to bottom, #FFF, #E3FEF1);
 }
 
+#danger {
+    color: red;
+}
+
 .posts1 {
     border-style: solid;
     border-width: thin;

@@ -58,10 +58,10 @@
                 <h3>@post.Title</h3>
             </div>
             <div class="col-md-2">
-                <p>@Html.ActionLink("update", "Update", "Admin", new { id = post.BlogPostId }, new { @class = "primary" })</p>
+                <p>@Html.ActionLink("update", "Update", "Admin", new { id = post.BlogPostId }, new { @class = "btn btn-primary" })</p>
             </div>
-            <div>
-                <p>@Html.ActionLink("delete", "DeletePost", "Admin", new { id = post.BlogPostId }, new { @class = "danger" })</p>
+            <div class="col-md-2">
+                <p>@Html.ActionLink("delete", "DeletePost", "Admin", new { id = post.BlogPostId }, new { @class = "btn btn-danger" })</p>
             </div>
         </div>
 
