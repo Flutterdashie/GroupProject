@@ -11,16 +11,14 @@ textarea {
     max-width: 280px;
 }
 
-html {
-    height: 110vh;
-}
-
 body {
-    background-image: linear-gradient(to bottom, #FFF, #E3FEF1);
+    background-color: transparent !important;
 }
 
-#danger {
-    color: red;
+html {
+    background-image: linear-gradient(to bottom, #FFF, #E3FEF1);
+    min-height: 100%;
+    background-size: cover;
 }
 
 .posts1 {
@@ -51,6 +49,11 @@ body {
     border-radius: 3px;
 }
 
+.button1 {
+    width: 250px;
+}
+
 .jumbo {
     background-image: radial-gradient(#F5FE75, #DA70D6);
+    height:250px;
 }
