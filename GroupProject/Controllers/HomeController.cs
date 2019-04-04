@@ -75,36 +75,19 @@ namespace GroupProject.Controllers
 
         //add route
         [Route("search/title/{term}")]
-        [AcceptVerbs("GET")]
+        [HttpGet]
         public ActionResult GuestSearchByTitle(string term)
         {
             var repo = new BlogRepository();
 
             IEnumerable<BlogPost> found = repo.SearchByTitle(term);
 
-            if (found == null)
+            if (!found.Any())
             {
-                return RedirectToAction("Index", "Home");
+                return HttpNotFound("Search returned no results.");
             }
 
-            return View(found);
-        }
-
-        //add route
-        [Route("search/id/{id}")]
-        [AcceptVerbs("GET")]
-        public ActionResult GuestSearchById(int id)
-        {
-            var repo = new BlogRepository();
-
-            IEnumerable<BlogPost> found = repo.SearchById(id);
-
-            if (found == null)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-
-            return View(found);
+            return Json(found, "application/json",JsonRequestBehavior.AllowGet);
         }
     }
 }

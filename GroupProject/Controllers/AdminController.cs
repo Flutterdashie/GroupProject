@@ -96,7 +96,7 @@ namespace GroupProject.Controllers
             return RedirectToAction("Index", "Admin");
         }
 
-        [AcceptVerbs("GET")]
+        [HttpGet]
         [Route("Admin/search/title/{term}")]
         public ActionResult SearchByTitle(string term)
         {
@@ -104,28 +104,28 @@ namespace GroupProject.Controllers
 
             IEnumerable<BlogPost> found = repo.SearchByTitle(term);
 
-            if (found == null)
+            if (!found.Any())
             {
-                return RedirectToAction("Index", "Admin");
+                return HttpNotFound("Search returned no results.");
             }
 
-            return View(found);
+            return Json(found, "application/json",JsonRequestBehavior.AllowGet);
         }
         
         [Route("Admin/search/id/{id}")]
-        [AcceptVerbs("GET")]
+        [HttpGet]
         public ActionResult SearchById(int id)
         {
             var repo = new BlogRepository();
 
             IEnumerable<BlogPost> found = repo.SearchById(id);
 
-            if (found == null)
+            if (!found.Any())
             {
-                return RedirectToAction("Index", "Admin");
+                return HttpNotFound("Search returned no results.");
             }
 
-            return View(found);
+            return Json(found, "application/json",JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Index()
