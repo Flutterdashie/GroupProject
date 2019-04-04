@@ -28,7 +28,7 @@
                     <input type="text" name="Search" id="SearchTextbox" class="square col-md-7" placeholder="Insert Term">
                 </div>
                 <div class="col-md-3">
-                    <a href="#" class="button button1" id="adminSearchButton">Search</a>
+                    <a href="#" class="button1 btn-info" id="adminSearchButton">Search</a>
                 </div>
             </div>
         </form>
@@ -48,24 +48,24 @@
 </div>
 
 <div class="container posts1">
-    @foreach (var post in Model)
-    {
-        <div class="row">
-            <div class="col-md-1">
-                <p>@post.BlogPostId</p>
+    <br />
+        @foreach (var post in Model)
+        {
+            <div class="row">
+                <div class="col-md-1">
+                    <p>@post.BlogPostId</p>
+                </div>
+                <div class="col-md-4">
+                    <h3>@post.Title</h3>
+                </div>
+                <div class="col-md-2">
+                    <p>@Html.ActionLink("update", "Update", "Admin", new { id = post.BlogPostId }, new { @class = "btn-sm btn-primary" })</p>
+                </div>
+                <div class="col-md-2">
+                    <p>@Html.ActionLink("delete", "DeletePost", "Admin", new { id = post.BlogPostId }, new { @class = "btn-sm btn-danger" })</p>
+                </div>
             </div>
-            <div class="col-md-4">
-                <h3>@post.Title</h3>
-            </div>
-            <div class="col-md-2">
-                <p>@Html.ActionLink("update", "Update", "Admin", new { id = post.BlogPostId }, new { @class = "btn btn-primary" })</p>
-            </div>
-            <div class="col-md-2">
-                <p>@Html.ActionLink("delete", "DeletePost", "Admin", new { id = post.BlogPostId }, new { @class = "btn btn-danger" })</p>
-            </div>
-        </div>
-    }
-
+        }
 </div>
 
 @section scripts {

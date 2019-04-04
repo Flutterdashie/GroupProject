@@ -66,12 +66,13 @@
                     <input type="text" name="Search" id="SearchTextbox" class="square col-md-7" placeholder="Insert Term">
                 </div>
                 <div class="col-md-3">
-                    <a href="#" class="button btn-info" id="guestSearchButton">Search</a>
+                    <a href="#" class="button1 btn-info" id="guestSearchButton">Search</a>
                 </div>
             </div>
         </form>
     </div>
 </div>
+<br />
 
 @foreach (var post in Model)
 {
@@ -79,7 +80,8 @@
         <div class="posts1">
             <div class="container">
                 <div class="row">
-                    <div class="h3 col-12">@post.Title</div>
+                    <div class="col-12">
+                        <h3>@post.Title</h3></div>
                 </div>
                 <div class="row">
                     <div class="col-12">@Html.Raw(post.Message)</div>

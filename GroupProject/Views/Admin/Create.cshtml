@@ -17,9 +17,14 @@
             @Html.LabelFor(m => m.Message)
             @Html.TextAreaFor(m => m.Message, new { @class = "form-control" })
         </div>
-
-        <button type="submit" class="btn btn-primary">Submit</button>
-
+        <div class="row">
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            <div class="col-md-4">
+                @Html.ActionLink("Back to Home", "Index", "Home", null, new { @class = "btn btn-primary" })
+            </div>
+        </div>
     }
 </div>
 @section scripts {
