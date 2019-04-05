@@ -117,7 +117,6 @@ namespace GroupProject.Repos
                 cmd.Parameters.AddWithValue("@BlogPostId", post.BlogPostId);
                 cmd.Parameters.AddWithValue("@BlogPostTitle", post.Title);
                 cmd.Parameters.AddWithValue("@BlogPostMessage", post.Message);
-                cmd.Parameters.AddWithValue("@DateAdded", post.DateAdded);
                 cmd.Parameters.AddWithValue("@DateEdited", DateTime.Now);
 
                 cn.Open();
