@@ -8,12 +8,20 @@
         });
     $('#adminSearchButton').click(function (event) {
         var category = $("#searchList").val();
+        if (category == null) {
+            alert('Please enter a search category');
+            return;
+        }
         var term = $("#SearchTextbox").val();
         var urlString = '/Admin/Search/' + category + '/' + term;
         HandleSearch(urlString);
     });
     $('#guestSearchButton').click(function (event) {
         var category = $("#searchList").val();
+        if (category == null) {
+            alert('Please enter a search category');
+            return;
+        }
         var term = $("#SearchTextbox").val();
         var urlString = '/Search/' + category + '/' + term;
         HandleSearch(urlString);
@@ -83,5 +91,5 @@ function RenderUser(item) {
     row += '</p></div><div class="col-md-4"><p>';
     row += Date(item.DateAdded.match(/\d+/)).toLocaleString('en-US').match(/^[^G]+/);
     row += '</p></div><div class="col-md-4"><p>@theOwner</p></div></div></div></div><br /></div>';
-    $('.posts2').append(row);
+    $('#posts2').append(row);
 }
