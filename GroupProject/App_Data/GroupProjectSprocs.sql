@@ -107,7 +107,7 @@ create procedure SearchByTitle(
 begin
 	select BlogPostId, BlogPostTitle, BlogPostMessage, DateAdded, DateEdited
 	from BlogPost
-	where BlogPostTitle = @BlogPostTitle
+	where BlogPostTitle LIKE CONCAT('%', @BlogPostTitle, '%')
 end
 go
 
